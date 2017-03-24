@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "API for a sample to-do app",
   "scripts": {
-    "start": "node server.js",
+    "start": "node src/server.js",
     "test": "mocha"
   },
   "author": "Scott Wagner",
