@@ -1,4 +1,7 @@
 {
+    "rules": {
+        "no-unused-expressions": "off"
+    },
     "env": {
         "node": true,
         "mocha": true
