@@ -102,4 +102,32 @@ describe('ToDo routes', () => {
       });
     });
   });
+
+  describe('/GET/:id', () => {
+    it('should get the todo for given id', (done) => {
+      const todoText = 'new';
+      const newTodo = new Todo({ text: todoText });
+      newTodo.save((error, todo) => {
+        chai.request(server)
+        .get(`/todo/${todo.id}`)
+        .end((err, res) => {
+          expect(res.body._id).to.equal(todo.id);
+          expect(res.body.text).to.equal(todoText);
+          done();
+        });
+      });
+    });
+    it('responds with 404 when todo is not found', (done) => {
+      const todoText = 'new';
+      const newTodo = new Todo({ text: todoText });
+      newTodo.save(() => {
+        chai.request(server)
+        .get('/todo/123')
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+      });
+    });
+  });
 });

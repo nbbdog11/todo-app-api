@@ -9,6 +9,15 @@ const getTodos = (req, res) => {
   });
 };
 
+const getTodo = (req, res) => {
+  Todo.findById(req.params.id, (err, todo) => {
+    if (err) {
+      res.status(404).send(err);
+    }
+    res.json(todo);
+  });
+};
+
 const postTodo = (req, res) => {
   const newTodo = new Todo(req.body);
   newTodo.save((err, todo) => {
@@ -21,5 +30,6 @@ const postTodo = (req, res) => {
 
 module.exports = {
   getTodos,
+  getTodo,
   postTodo,
 };
